@@ -43,6 +43,50 @@
       <header class="app__header">
         <h1 class="app__title">Poker Outs Calculator</h1>
         <div class="app__header-controls">
+          <div class="strategy-dropdown">
+            <button 
+              class="strategy-dropdown__trigger" 
+              aria-expanded="false"
+              aria-haspopup="true"
+              id="strategyDropdown">
+              Strategy
+              <svg class="strategy-dropdown__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </button>
+            <div class="strategy-dropdown__menu" id="strategyMenu">
+              <a href="why-the-rule-of-4-and-2-fails.html" class="strategy-dropdown__item">
+                <div class="strategy-dropdown__item-content">
+                  <span class="strategy-dropdown__item-title">Why Rule of 4 & 2 Fails</span>
+                  <span class="strategy-dropdown__item-desc">Multi-way pot calculations</span>
+                </div>
+              </a>
+              <a href="complete-guide-poker-outs-odds.html" class="strategy-dropdown__item">
+                <div class="strategy-dropdown__item-content">
+                  <span class="strategy-dropdown__item-title">Complete Guide to Outs & Odds</span>
+                  <span class="strategy-dropdown__item-desc">Master poker probability</span>
+                </div>
+              </a>
+              <a href="cash-game-starting-hands.html" class="strategy-dropdown__item">
+                <div class="strategy-dropdown__item-content">
+                  <span class="strategy-dropdown__item-title">Cash Game Starting Hands</span>
+                  <span class="strategy-dropdown__item-desc">Win rates by position</span>
+                </div>
+              </a>
+              <a href="/implied-odds-guide.html" class="strategy-dropdown__item">
+                <div class="strategy-dropdown__item-content">
+                  <span class="strategy-dropdown__item-title">Implied Odds in Poker</span>
+                  <span class="strategy-dropdown__item-desc">Future value betting guide</span>
+                </div>
+              </a>
+              <a href="tournament-bankroll-management.html" class="strategy-dropdown__item">
+                <div class="strategy-dropdown__item-content">
+                  <span class="strategy-dropdown__item-title">Tournament Bankroll Management</span>
+                  <span class="strategy-dropdown__item-desc">Never go broke playing tournaments</span>
+                </div>
+              </a>
+            </div>
+          </div>
           <a
             href="#how-to-use"
             class="help-link"
@@ -117,63 +161,6 @@
           </button>
         </div>
       </header>
-
-      <div
-        class="install-banner"
-        id="installBanner">
-        <div class="install-banner__content">
-          <div class="install-banner__text">
-            <strong>Install to Your Home Screen</strong>
-            <span class="install-banner__description"
-              >Get quick access to the poker calculator</span
-            >
-          </div>
-          <button
-            class="install-banner__button"
-            id="installButton">
-            <svg
-              class="install-banner__icon"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7,10 12,15 17,10"></polyline>
-              <line
-                x1="12"
-                y1="15"
-                x2="12"
-                y2="3"></line>
-            </svg>
-            Install
-          </button>
-          <button
-            class="install-banner__close"
-            id="installBannerClose"
-            aria-label="Close install banner">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2">
-              <line
-                x1="18"
-                y1="6"
-                x2="6"
-                y2="18"></line>
-              <line
-                x1="6"
-                y1="6"
-                x2="18"
-                y2="18"></line>
-            </svg>
-          </button>
-        </div>
-      </div>
 
       <main class="calculator">
         <div class="calculator__inputs">
@@ -319,7 +306,62 @@
         class="how-to-use"
         id="how-to-use">
         <h2 class="how-to-use__title">How to Use This Poker Calculator</h2>
-
+        <div
+        class="install-banner"
+        id="installBanner">
+        <div class="install-banner__content">
+          <div class="install-banner__text">
+            <strong>Install to Your Home Screen</strong>
+            <span class="install-banner__description"
+              >Get quick access to the poker calculator</span
+            >
+          </div>
+          <button
+            class="install-banner__button"
+            id="installButton">
+            <svg
+              class="install-banner__icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7,10 12,15 17,10"></polyline>
+              <line
+                x1="12"
+                y1="15"
+                x2="12"
+                y2="3"></line>
+            </svg>
+            Install
+          </button>
+          <button
+            class="install-banner__close"
+            id="installBannerClose"
+            aria-label="Close install banner">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <line
+                x1="18"
+                y1="6"
+                x2="6"
+                y2="18"></line>
+              <line
+                x1="6"
+                y1="6"
+                x2="18"
+                y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
         <div class="how-to-use__content">
           <div class="how-to-use__section">
             <h3 class="how-to-use__subtitle">What is a Poker Outs Calculator?</h3>
@@ -357,7 +399,7 @@
               Our <strong>poker probability calculator</strong> uses precise mathematical formulas
               to determine your chances of hitting your draw. The calculator accounts for the number
               of players at the table, as each additional player reduces the number of unknown cards
-              available.
+              available. Learn why traditional shortcuts fail in our guide to <a href="why-the-rule-of-4-and-2-fails.html">multi-way pot calculations</a>.
             </p>
 
             <div class="how-to-use__formula">
@@ -440,7 +482,7 @@
               </p>
               <p class="how-to-use__tip">
                 <strong>Consider Implied Odds:</strong> Factor in potential future winnings when
-                your draw hits
+                your draw hits. Learn more in our <a href="implied-odds-guide.html">complete implied odds guide</a>
               </p>
               <p class="how-to-use__tip">
                 <strong>Don't Forget Reverse Implied Odds:</strong> Sometimes hitting your draw can
@@ -450,6 +492,50 @@
                 <strong>Use in Study Sessions:</strong> Review hands offline to improve your
                 intuitive understanding
               </p>
+            </div>
+          </div>
+
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">Learn More Strategy</h3>
+            <p class="how-to-use__text">
+              Master poker fundamentals with our comprehensive strategy guides. From basic probability to advanced tournament play, these resources will elevate your game.
+            </p>
+            
+            <div class="how-to-use__strategy-links">
+              <a href="why-the-rule-of-4-and-2-fails.html" class="how-to-use__strategy-link">
+                <div class="how-to-use__strategy-content">
+                  <h4 class="how-to-use__strategy-title">Why the Rule of 4 & 2 Fails</h4>
+                  <p class="how-to-use__strategy-desc">Learn why traditional poker shortcuts break down in multi-way pots and discover accurate calculation methods.</p>
+                </div>
+              </a>
+              
+              <a href="complete-guide-poker-outs-odds.html" class="how-to-use__strategy-link">
+                <div class="how-to-use__strategy-content">
+                  <h4 class="how-to-use__strategy-title">Complete Guide to Outs & Odds</h4>
+                  <p class="how-to-use__strategy-desc">Master the fundamentals of counting outs, calculating probabilities, and making profitable poker decisions.</p>
+                </div>
+              </a>
+              
+              <a href="implied-odds-guide.html" class="how-to-use__strategy-link">
+                <div class="how-to-use__strategy-content">
+                  <h4 class="how-to-use__strategy-title">Implied Odds in Poker</h4>
+                  <p class="how-to-use__strategy-desc">Understand future value betting and when to call draws that don't meet current pot odds requirements.</p>
+                </div>
+              </a>
+              
+              <a href="cash-game-starting-hands.html" class="how-to-use__strategy-link">
+                <div class="how-to-use__strategy-content">
+                  <h4 class="how-to-use__strategy-title">Cash Game Starting Hands</h4>
+                  <p class="how-to-use__strategy-desc">Detailed win rates and position-based strategies for profitable cash game hand selection.</p>
+                </div>
+              </a>
+              
+              <a href="tournament-bankroll-management.html" class="how-to-use__strategy-link">
+                <div class="how-to-use__strategy-content">
+                  <h4 class="how-to-use__strategy-title">Tournament Bankroll Management</h4>
+                  <p class="how-to-use__strategy-desc">Professional bankroll strategies to handle tournament variance and never go broke.</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>

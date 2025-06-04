@@ -300,6 +300,91 @@ const showIOSInstructions = () => {
     });
 };
 
+// Strategy dropdown functionality
+const initStrategyDropdown = () => {
+    const dropdownTrigger = document.getElementById('strategyDropdown');
+    const dropdownMenu = document.getElementById('strategyMenu');
+    
+    if (!dropdownTrigger || !dropdownMenu) return;
+    
+    // Toggle dropdown on click
+    dropdownTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isOpen = dropdownTrigger.getAttribute('aria-expanded') === 'true';
+        
+        if (isOpen) {
+            closeDropdown();
+        } else {
+            openDropdown();
+        }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+    
+    // Close dropdown on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeDropdown();
+        }
+    });
+    
+    // Handle keyboard navigation
+    dropdownTrigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dropdownTrigger.click();
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            openDropdown();
+            focusFirstItem();
+        }
+    });
+    
+    // Add keyboard navigation for dropdown items
+    const dropdownItems = dropdownMenu.querySelectorAll('.strategy-dropdown__item:not(.strategy-dropdown__item--coming-soon)');
+    dropdownItems.forEach((item, index) => {
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const nextIndex = (index + 1) % dropdownItems.length;
+                dropdownItems[nextIndex].focus();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prevIndex = (index - 1 + dropdownItems.length) % dropdownItems.length;
+                dropdownItems[prevIndex].focus();
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                closeDropdown();
+                dropdownTrigger.focus();
+            }
+        });
+    });
+    
+    function openDropdown() {
+        dropdownTrigger.setAttribute('aria-expanded', 'true');
+        dropdownMenu.classList.add('strategy-dropdown__menu--visible');
+    }
+    
+    function closeDropdown() {
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+        dropdownMenu.classList.remove('strategy-dropdown__menu--visible');
+    }
+    
+    function focusFirstItem() {
+        const firstItem = dropdownMenu.querySelector('.strategy-dropdown__item:not(.strategy-dropdown__item--coming-soon)');
+        if (firstItem) {
+            firstItem.focus();
+        }
+    }
+};
+
 // Initialize app
 const init = () => {
     // Set up theme
@@ -307,6 +392,9 @@ const init = () => {
     
     // Set up install banner
     initInstallBanner();
+    
+    // Set up strategy dropdown
+    initStrategyDropdown();
     
     // Add event listeners
     document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
