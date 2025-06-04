@@ -7,11 +7,23 @@
       content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Calculate poker hand probabilities based on outs and player count" />
+      content="Free poker outs calculator & poker odds calculator. Calculate poker hand odds, pot odds, and poker probability percentages. The ultimate poker probability calculator for players at all levels." />
+    <meta
+      name="keywords"
+      content="poker outs calculator, poker odds calculator, poker probability calculator, pot odds calculator, poker hand odds, poker percentages, poker math, texas holdem calculator" />
+    <meta
+      property="og:title"
+      content="Poker Outs Calculator - Free Poker Odds & Probability Calculator" />
+    <meta
+      property="og:description"
+      content="Calculate poker hand odds and pot odds instantly. Free poker outs calculator with accurate probability calculations for all poker hands." />
+    <meta
+      property="og:type"
+      content="website" />
     <meta
       name="theme-color"
       content="#000000" />
-    <title>Poker Outs Calculator</title>
+    <title>Poker Outs Calculator - Free Poker Odds & Probability Calculator</title>
     <link
       rel="manifest"
       href="manifest.json" />
@@ -30,93 +42,134 @@
     <div class="app">
       <header class="app__header">
         <h1 class="app__title">Poker Outs Calculator</h1>
-        <button
-          class="theme-toggle"
-          aria-label="Toggle theme">
-          <svg
-            class="theme-toggle__icon theme-toggle__icon--light"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2">
-            <circle
-              cx="12"
-              cy="12"
-              r="5"></circle>
-            <line
-              x1="12"
-              y1="1"
-              x2="12"
-              y2="3"></line>
-            <line
-              x1="12"
-              y1="21"
-              x2="12"
-              y2="23"></line>
-            <line
-              x1="4.22"
-              y1="4.22"
-              x2="5.64"
-              y2="5.64"></line>
-            <line
-              x1="18.36"
-              y1="18.36"
-              x2="19.78"
-              y2="19.78"></line>
-            <line
-              x1="1"
-              y1="12"
-              x2="3"
-              y2="12"></line>
-            <line
-              x1="21"
-              y1="12"
-              x2="23"
-              y2="12"></line>
-            <line
-              x1="4.22"
-              y1="19.78"
-              x2="5.64"
-              y2="18.36"></line>
-            <line
-              x1="18.36"
-              y1="5.64"
-              x2="19.78"
-              y2="4.22"></line>
-          </svg>
-          <svg
-            class="theme-toggle__icon theme-toggle__icon--dark"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
+        <div class="app__header-controls">
+          <a
+            href="#how-to-use"
+            class="help-link"
+            >How to use</a
+          >
+          <button
+            class="theme-toggle"
+            aria-label="Toggle theme">
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--light"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <circle
+                cx="12"
+                cy="12"
+                r="5"></circle>
+              <line
+                x1="12"
+                y1="1"
+                x2="12"
+                y2="3"></line>
+              <line
+                x1="12"
+                y1="21"
+                x2="12"
+                y2="23"></line>
+              <line
+                x1="4.22"
+                y1="4.22"
+                x2="5.64"
+                y2="5.64"></line>
+              <line
+                x1="18.36"
+                y1="18.36"
+                x2="19.78"
+                y2="19.78"></line>
+              <line
+                x1="1"
+                y1="12"
+                x2="3"
+                y2="12"></line>
+              <line
+                x1="21"
+                y1="12"
+                x2="23"
+                y2="12"></line>
+              <line
+                x1="4.22"
+                y1="19.78"
+                x2="5.64"
+                y2="18.36"></line>
+              <line
+                x1="18.36"
+                y1="5.64"
+                x2="19.78"
+                y2="4.22"></line>
+            </svg>
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--dark"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
       </header>
 
-      <div class="install-banner" id="installBanner">
+      <div
+        class="install-banner"
+        id="installBanner">
         <div class="install-banner__content">
           <div class="install-banner__text">
             <strong>Install to Your Home Screen</strong>
-            <span class="install-banner__description">Get quick access to the poker calculator</span>
+            <span class="install-banner__description"
+              >Get quick access to the poker calculator</span
+            >
           </div>
-          <button class="install-banner__button" id="installButton">
-            <svg class="install-banner__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button
+            class="install-banner__button"
+            id="installButton">
+            <svg
+              class="install-banner__icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7,10 12,15 17,10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
+              <line
+                x1="12"
+                y1="15"
+                x2="12"
+                y2="3"></line>
             </svg>
             Install
           </button>
-          <button class="install-banner__close" id="installBannerClose" aria-label="Close install banner">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
+          <button
+            class="install-banner__close"
+            id="installBannerClose"
+            aria-label="Close install banner">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <line
+                x1="18"
+                y1="6"
+                x2="6"
+                y2="18"></line>
+              <line
+                x1="6"
+                y1="6"
+                x2="18"
+                y2="18"></line>
             </svg>
           </button>
         </div>
@@ -187,101 +240,344 @@
           <h3 class="pot-odds-calculator__title">Pot Odds Calculator</h3>
           <div class="pot-odds-calculator__toggle">
             <label class="toggle-label">
-              <input type="radio" name="street" value="turn" checked>
+              <input
+                type="radio"
+                name="street"
+                value="turn"
+                checked />
               <span>After Flop</span>
             </label>
             <label class="toggle-label">
-              <input type="radio" name="street" value="river">
+              <input
+                type="radio"
+                name="street"
+                value="river" />
               <span>After Turn</span>
             </label>
           </div>
           <div class="pot-odds-calculator__inputs">
             <div class="form-group">
-              <label class="form-group__label" for="potSize">Pot Size ($)</label>
-              <input 
-                type="number" 
-                class="form-group__input" 
-                id="potSize" 
-                min="0" 
-                placeholder="Current pot"
-                inputmode="numeric"
+              <label
+                class="form-group__label"
+                for="potSize"
+                >Pot Size ($)</label
               >
+              <input
+                type="number"
+                class="form-group__input"
+                id="potSize"
+                min="0"
+                placeholder="Current pot"
+                inputmode="numeric" />
             </div>
             <div class="form-group">
-              <label class="form-group__label" for="betSize">Bet to Call ($)</label>
-              <input 
-                type="number" 
-                class="form-group__input" 
-                id="betSize" 
-                min="0" 
-                placeholder="Amount to call"
-                inputmode="numeric"
+              <label
+                class="form-group__label"
+                for="betSize"
+                >Bet to Call ($)</label
               >
+              <input
+                type="number"
+                class="form-group__input"
+                id="betSize"
+                min="0"
+                placeholder="Amount to call"
+                inputmode="numeric" />
             </div>
           </div>
-          
+
           <div class="pot-odds-results">
             <div class="pot-odds-results__item">
               <span class="pot-odds-results__label">Pot Odds</span>
-              <span class="pot-odds-results__value" id="potOddsRatio">—</span>
+              <span
+                class="pot-odds-results__value"
+                id="potOddsRatio"
+                >—</span
+              >
             </div>
             <div class="pot-odds-results__item">
               <span class="pot-odds-results__label">Need to Win</span>
-              <span class="pot-odds-results__value" id="potOddsPercent">—</span>
+              <span
+                class="pot-odds-results__value"
+                id="potOddsPercent"
+                >—</span
+              >
             </div>
             <div class="pot-odds-results__item pot-odds-results__item--full">
               <span class="pot-odds-results__label">Decision</span>
-              <span class="pot-odds-results__value pot-odds-results__decision" id="decision">Enter pot and bet amounts</span>
+              <span
+                class="pot-odds-results__value pot-odds-results__decision"
+                id="decision"
+                >Enter pot and bet amounts</span
+              >
             </div>
-          </div>
-        </div>
-
-        <div class="help-section">
-          <h3 class="help-section__title">Common Drawing Hands</h3>
-          <div class="help-section__content">
-            <div class="help-section__item">
-              <span class="help-section__outs">9 outs</span>
-              <span class="help-section__hand">Flush Draw</span>
-            </div>
-            <div class="help-section__item">
-              <span class="help-section__outs">8 outs</span>
-              <span class="help-section__hand">Open-Ended Straight Draw</span>
-            </div>
-            <div class="help-section__item">
-              <span class="help-section__outs">4 outs</span>
-              <span class="help-section__hand">Gutshot Straight / Two Pair to Full House</span>
-            </div>
-            <div class="help-section__item">
-              <span class="help-section__outs">2 outs</span>
-              <span class="help-section__hand">One Pair to Trips</span>
-            </div>
-          </div>
-
-          <h3 class="help-section__title">Quick Tips</h3>
-          <div class="help-section__tips">
-            <p class="help-section__tip">
-              • <strong>Rule of 2 and 4:</strong> For a quick estimate, multiply your outs by 4
-              after the flop, or by 2 after the turn
-            </p>
-            <p class="help-section__tip">
-              • <strong>Pot Odds:</strong> Compare your winning % to the pot odds to make profitable
-              calls
-            </p>
-            <p class="help-section__tip">
-              • <strong>Implied Odds:</strong> Consider future betting when your draw hits
-            </p>
-            <p class="help-section__tip">
-              • <strong>Position Matters:</strong> Drawing hands play better in position
-            </p>
           </div>
         </div>
       </main>
 
+      <section
+        class="how-to-use"
+        id="how-to-use">
+        <h2 class="how-to-use__title">How to Use This Poker Calculator</h2>
+
+        <div class="how-to-use__content">
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">What is a Poker Outs Calculator?</h3>
+            <p class="how-to-use__text">
+              This <strong>poker outs calculator</strong> is a free tool that helps you calculate
+              the exact probability of improving your poker hand. Whether you're playing Texas
+              Hold'em, Omaha, or any other poker variant, our
+              <strong>poker odds calculator</strong> gives you the mathematical edge you need to
+              make profitable decisions.
+            </p>
+          </div>
+
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">How to Calculate Poker Hand Odds</h3>
+            <ol class="how-to-use__steps">
+              <li>
+                <strong>Select Players:</strong> Choose how many players are at the table (2-9
+                players)
+              </li>
+              <li><strong>Enter Your Outs:</strong> Count the cards that will improve your hand</li>
+              <li>
+                <strong>View Results:</strong> See your exact <strong>poker hand odds</strong> for
+                both turn and river
+              </li>
+              <li>
+                <strong>Calculate Pot Odds:</strong> Use our built-in
+                <strong>pot odds calculator</strong> to determine if calling is profitable
+              </li>
+            </ol>
+          </div>
+
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">Understanding Poker Probability</h3>
+            <p class="how-to-use__text">
+              Our <strong>poker probability calculator</strong> uses precise mathematical formulas
+              to determine your chances of hitting your draw. The calculator accounts for the number
+              of players at the table, as each additional player reduces the number of unknown cards
+              available.
+            </p>
+
+            <div class="how-to-use__formula">
+              <h4>Formula for Turn & River (2 cards to come):</h4>
+              <p>
+                1 - ((cards_left - outs) / cards_left) × ((cards_left - 1 - outs) / (cards_left -
+                1))
+              </p>
+
+              <h4>Formula for River only (1 card to come):</h4>
+              <p>outs / cards_left</p>
+            </div>
+          </div>
+
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">Common Poker Outs Examples</h3>
+            <div class="how-to-use__examples">
+              <div class="how-to-use__example">
+                <strong>Flush Draw (9 outs):</strong> You have 4 cards of the same suit after the
+                flop
+              </div>
+              <div class="how-to-use__example">
+                <strong>Open-Ended Straight Draw (8 outs):</strong> You need a card on either end to
+                complete your straight
+              </div>
+              <div class="how-to-use__example">
+                <strong>Gutshot Straight Draw (4 outs):</strong> You need one specific rank to
+                complete your straight
+              </div>
+              <div class="how-to-use__example">
+                <strong>Two Pair to Full House (4 outs):</strong> You need to pair one of your two
+                pairs
+              </div>
+            </div>
+          </div>
+
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">Pot Odds Calculator Guide</h3>
+            <p class="how-to-use__text">
+              The integrated <strong>pot odds calculator</strong> helps you determine whether
+              calling a bet is mathematically profitable. Simply enter the current pot size and the
+              bet you need to call. If your <strong>poker hand odds</strong> are better than the pot
+              odds, you should call. If they're worse, you should fold.
+            </p>
+
+            <div class="how-to-use__pot-odds-example">
+              <h4>Example:</h4>
+              <p>• Pot size: $100, Bet to call: $20</p>
+              <p>• Pot odds: 6:1 (need to win 16.7% of the time)</p>
+              <p>• If your hand has 20% chance to win → CALL</p>
+              <p>• If your hand has 15% chance to win → FOLD</p>
+            </div>
+          </div>
+
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">Why Use a Poker Odds Calculator?</h3>
+            <ul class="how-to-use__benefits">
+              <li>
+                <strong>Accurate Calculations:</strong> Get precise percentages instead of rough
+                estimates
+              </li>
+              <li><strong>Instant Results:</strong> No mental math required during live play</li>
+              <li>
+                <strong>Player Count Adjustment:</strong> Accounts for the exact number of opponents
+              </li>
+              <li>
+                <strong>Pot Odds Integration:</strong> Make profitable decisions with combined odds
+                analysis
+              </li>
+              <li><strong>Learning Tool:</strong> Improve your poker math skills over time</li>
+            </ul>
+          </div>
+
+          <div class="how-to-use__section">
+            <h3 class="how-to-use__subtitle">Pro Tips for Using Poker Calculators</h3>
+            <div class="how-to-use__tips">
+              <p class="how-to-use__tip">
+                <strong>Practice Counting Outs:</strong> The more accurate your out count, the
+                better your decisions
+              </p>
+              <p class="how-to-use__tip">
+                <strong>Consider Implied Odds:</strong> Factor in potential future winnings when
+                your draw hits
+              </p>
+              <p class="how-to-use__tip">
+                <strong>Don't Forget Reverse Implied Odds:</strong> Sometimes hitting your draw can
+                still lose to a better hand
+              </p>
+              <p class="how-to-use__tip">
+                <strong>Use in Study Sessions:</strong> Review hands offline to improve your
+                intuitive understanding
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer class="app__footer">
-        <p class="app__footer-text">Made with ❤️ by <a href="https://avi.nyc">Avi.NYC</a>. <a href="https://www.ncpgambling.org/help-treatment/">Gamble Responsibly.</a></p>
+        <p class="app__footer-text">
+          Made with ❤️ by <a href="https://avi.nyc">Avi.NYC</a>.
+          <a href="https://www.ncpgambling.org/help-treatment/">Gamble Responsibly.</a>
+        </p>
       </footer>
     </div>
 
     <script src="app.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Poker Outs Calculator",
+        "description": "Calculate accurate poker hand probabilities based on outs and player count. More precise than the Rule of 4 and 2 for multi-way pots.",
+        "url": "https://pokerouts.app",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Avi Flombaum",
+          "url": "https://avi.nyc"
+        },
+        "featureList": [
+          "Calculate poker odds for 2-9 players",
+          "Pot odds calculator",
+          "Turn and river probability calculations",
+          "Progressive Web App (PWA)",
+          "Dark/light mode toggle"
+        ],
+        "screenshot": "https://pokerouts.app/screenshot.png",
+        "browserRequirements": "Requires JavaScript"
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Calculate Poker Outs and Odds",
+        "description": "Learn to calculate accurate poker probabilities based on the number of players at the table",
+        "image": "https://pokerouts.app/poker-odds-guide.png",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Count Your Outs",
+            "text": "Identify how many cards in the deck will improve your hand to a winner",
+            "image": "https://pokerouts.app/count-outs.png"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Select Players",
+            "text": "Choose the number of players at your table (2-9 players)",
+            "image": "https://pokerouts.app/select-players.png"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Get Accurate Odds",
+            "text": "View your precise winning percentage for turn and river, adjusted for table size",
+            "image": "https://pokerouts.app/view-results.png"
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between this calculator and the Rule of 4 and 2?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Rule of 4 and 2 assumes heads-up play, but this calculator adjusts for the actual number of players at the table. In multi-way pots, your odds are significantly higher because there are fewer unknown cards remaining."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many outs do I have with a flush draw?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A flush draw typically has 9 outs - there are 13 cards of each suit, you have 2, and 2 more are on the board, leaving 9 cards that complete your flush."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are pot odds in poker?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pot odds are the ratio of the current pot size to the cost of calling a bet. Compare pot odds to your winning percentage to determine if a call is profitable."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I calculate poker outs for a straight draw?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An open-ended straight draw has 8 outs (4 cards on each end). A gutshot (inside straight) has 4 outs. Count carefully to avoid double-counting cards that might give opponents better hands."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Avi.NYC",
+        "url": "https://avi.nyc",
+        "founder": {
+          "@type": "Person",
+          "name": "Avi Flombaum"
+        },
+        "sameAs": ["https://twitter.com/aviflombaum", "https://github.com/aviflombaum"]
+      }
+    </script>
   </body>
 </html>

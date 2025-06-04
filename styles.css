@@ -86,10 +86,28 @@ body {
     margin-bottom: var(--spacing-2xl);
 }
 
+.app__header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
 .app__title {
     font-size: var(--font-2xl);
     font-weight: 700;
     letter-spacing: -0.025em;
+}
+
+/* Help Link */
+.help-link {
+    font-size: var(--font-sm);
+    color: var(--color-muted-foreground);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.help-link:hover {
+    color: var(--color-foreground);
 }
 
 /* Theme Toggle */
@@ -467,6 +485,149 @@ body {
 
 .help-section__tip strong {
     color: var(--color-foreground);
+}
+
+/* How to Use Section */
+.how-to-use {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    margin: var(--spacing-2xl) 0;
+}
+
+.how-to-use__title {
+    font-size: var(--font-2xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-foreground);
+    text-align: center;
+}
+
+.how-to-use__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+}
+
+.how-to-use__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.how-to-use__subtitle {
+    font-size: var(--font-xl);
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: var(--spacing-sm);
+}
+
+.how-to-use__text {
+    font-size: var(--font-base);
+    line-height: 1.6;
+    color: var(--color-foreground);
+    margin: 0;
+}
+
+.how-to-use__steps {
+    margin: 0;
+    padding-left: var(--spacing-xl);
+}
+
+.how-to-use__steps li {
+    font-size: var(--font-base);
+    line-height: 1.6;
+    color: var(--color-foreground);
+    margin-bottom: var(--spacing-sm);
+}
+
+.how-to-use__formula {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.how-to-use__formula h4 {
+    font-size: var(--font-base);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-foreground);
+}
+
+.how-to-use__formula p {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: var(--font-sm);
+    background-color: var(--color-muted);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--color-foreground);
+}
+
+.how-to-use__examples {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.how-to-use__example {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    font-size: var(--font-base);
+    color: var(--color-foreground);
+}
+
+.how-to-use__pot-odds-example {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.how-to-use__pot-odds-example h4 {
+    font-size: var(--font-base);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-foreground);
+}
+
+.how-to-use__pot-odds-example p {
+    font-size: var(--font-sm);
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--color-foreground);
+}
+
+.how-to-use__benefits {
+    margin: 0;
+    padding-left: var(--spacing-xl);
+}
+
+.how-to-use__benefits li {
+    font-size: var(--font-base);
+    line-height: 1.6;
+    color: var(--color-foreground);
+    margin-bottom: var(--spacing-sm);
+}
+
+.how-to-use__tips {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.how-to-use__tip {
+    background-color: var(--color-background);
+    border-left: 4px solid var(--color-primary);
+    padding: var(--spacing-md);
+    font-size: var(--font-base);
+    line-height: 1.6;
+    color: var(--color-foreground);
+    margin: 0;
 }
 
 /* Footer */
