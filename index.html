@@ -160,6 +160,59 @@
           </div>
         </div>
 
+        <div class="pot-odds-calculator">
+          <h3 class="pot-odds-calculator__title">Pot Odds Calculator</h3>
+          <div class="pot-odds-calculator__toggle">
+            <label class="toggle-label">
+              <input type="radio" name="street" value="turn" checked>
+              <span>After Flop</span>
+            </label>
+            <label class="toggle-label">
+              <input type="radio" name="street" value="river">
+              <span>After Turn</span>
+            </label>
+          </div>
+          <div class="pot-odds-calculator__inputs">
+            <div class="form-group">
+              <label class="form-group__label" for="potSize">Pot Size ($)</label>
+              <input 
+                type="number" 
+                class="form-group__input" 
+                id="potSize" 
+                min="0" 
+                placeholder="Current pot"
+                inputmode="numeric"
+              >
+            </div>
+            <div class="form-group">
+              <label class="form-group__label" for="betSize">Bet to Call ($)</label>
+              <input 
+                type="number" 
+                class="form-group__input" 
+                id="betSize" 
+                min="0" 
+                placeholder="Amount to call"
+                inputmode="numeric"
+              >
+            </div>
+          </div>
+          
+          <div class="pot-odds-results">
+            <div class="pot-odds-results__item">
+              <span class="pot-odds-results__label">Pot Odds</span>
+              <span class="pot-odds-results__value" id="potOddsRatio">—</span>
+            </div>
+            <div class="pot-odds-results__item">
+              <span class="pot-odds-results__label">Need to Win</span>
+              <span class="pot-odds-results__value" id="potOddsPercent">—</span>
+            </div>
+            <div class="pot-odds-results__item pot-odds-results__item--full">
+              <span class="pot-odds-results__label">Decision</span>
+              <span class="pot-odds-results__value pot-odds-results__decision" id="decision">Enter pot and bet amounts</span>
+            </div>
+          </div>
+        </div>
+
         <div class="help-section">
           <h3 class="help-section__title">Common Drawing Hands</h3>
           <div class="help-section__content">

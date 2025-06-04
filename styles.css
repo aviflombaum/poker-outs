@@ -229,6 +229,96 @@ body {
     justify-content: center;
 }
 
+/* Pot Odds Calculator */
+.pot-odds-calculator {
+    margin-top: var(--spacing-2xl);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+}
+
+.pot-odds-calculator__title {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-foreground);
+}
+
+.pot-odds-calculator__toggle {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    justify-content: center;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    font-size: var(--font-sm);
+}
+
+.toggle-label input[type="radio"] {
+    cursor: pointer;
+}
+
+.pot-odds-calculator__inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.pot-odds-results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.pot-odds-results__item {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+}
+
+.pot-odds-results__item--full {
+    grid-column: 1 / -1;
+}
+
+.pot-odds-results__label {
+    display: block;
+    font-size: var(--font-sm);
+    color: var(--color-muted-foreground);
+    margin-bottom: var(--spacing-xs);
+}
+
+.pot-odds-results__value {
+    display: block;
+    font-size: var(--font-xl);
+    font-weight: 600;
+    color: var(--color-foreground);
+}
+
+.pot-odds-results__decision {
+    font-size: var(--font-base);
+}
+
+.pot-odds-results__decision--call {
+    color: #10b981;
+}
+
+.pot-odds-results__decision--fold {
+    color: #ef4444;
+}
+
+.pot-odds-results__decision--close {
+    color: #f59e0b;
+}
+
 /* Help Section */
 .help-section {
     margin-top: var(--spacing-2xl);

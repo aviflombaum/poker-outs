@@ -65,6 +65,69 @@ const updateDisplay = () => {
     
     turnElement.textContent = probabilities.turn.toFixed(1) + '%';
     riverElement.textContent = probabilities.river.toFixed(1) + '%';
+    
+    // Recalculate pot odds when percentages change
+    calculatePotOdds();
+};
+
+// Pot odds calculation
+const calculatePotOdds = () => {
+    const potSizeInput = document.getElementById('potSize');
+    const betSizeInput = document.getElementById('betSize');
+    const potOddsRatioElement = document.getElementById('potOddsRatio');
+    const potOddsPercentElement = document.getElementById('potOddsPercent');
+    const decisionElement = document.getElementById('decision');
+    
+    const potSize = parseFloat(potSizeInput.value);
+    const betSize = parseFloat(betSizeInput.value);
+    
+    if (!potSize || !betSize || potSize < 0 || betSize < 0) {
+        potOddsRatioElement.textContent = '—';
+        potOddsPercentElement.textContent = '—';
+        decisionElement.textContent = 'Enter pot and bet amounts';
+        decisionElement.className = 'pot-odds-results__value pot-odds-results__decision';
+        return;
+    }
+    
+    // Calculate pot odds
+    const totalPot = potSize + betSize;
+    const potOddsRatio = totalPot / betSize;
+    const potOddsPercent = (betSize / (totalPot + betSize)) * 100;
+    
+    // Display pot odds
+    potOddsRatioElement.textContent = `${potOddsRatio.toFixed(1)}:1`;
+    potOddsPercentElement.textContent = `${potOddsPercent.toFixed(1)}%`;
+    
+    // Get current winning percentage based on selected street
+    const selectedStreet = document.querySelector('input[name="street"]:checked').value;
+    const turnPercent = document.getElementById('turnPercentage').textContent;
+    const riverPercent = document.getElementById('riverPercentage').textContent;
+    
+    let winningPercent = null;
+    if (selectedStreet === 'turn' && turnPercent !== '—') {
+        winningPercent = parseFloat(turnPercent);
+    } else if (selectedStreet === 'river' && riverPercent !== '—') {
+        winningPercent = parseFloat(riverPercent);
+    }
+    
+    // Make decision
+    if (winningPercent !== null) {
+        const difference = winningPercent - potOddsPercent;
+        
+        if (difference > 5) {
+            decisionElement.textContent = `CALL! Your ${winningPercent.toFixed(1)}% > ${potOddsPercent.toFixed(1)}% needed`;
+            decisionElement.className = 'pot-odds-results__value pot-odds-results__decision pot-odds-results__decision--call';
+        } else if (difference < -5) {
+            decisionElement.textContent = `FOLD. Your ${winningPercent.toFixed(1)}% < ${potOddsPercent.toFixed(1)}% needed`;
+            decisionElement.className = 'pot-odds-results__value pot-odds-results__decision pot-odds-results__decision--fold';
+        } else {
+            decisionElement.textContent = `CLOSE CALL. Your ${winningPercent.toFixed(1)}% ≈ ${potOddsPercent.toFixed(1)}% needed`;
+            decisionElement.className = 'pot-odds-results__value pot-odds-results__decision pot-odds-results__decision--close';
+        }
+    } else {
+        decisionElement.textContent = 'Enter outs above to see decision';
+        decisionElement.className = 'pot-odds-results__value pot-odds-results__decision';
+    }
 };
 
 // Initialize app
@@ -76,6 +139,13 @@ const init = () => {
     document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
     document.getElementById('players').addEventListener('change', updateDisplay);
     document.getElementById('outs').addEventListener('input', updateDisplay);
+    
+    // Pot odds calculator listeners
+    document.getElementById('potSize').addEventListener('input', calculatePotOdds);
+    document.getElementById('betSize').addEventListener('input', calculatePotOdds);
+    document.querySelectorAll('input[name="street"]').forEach(radio => {
+        radio.addEventListener('change', calculatePotOdds);
+    });
     
     // Initial display update
     updateDisplay();
