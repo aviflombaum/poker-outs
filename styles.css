@@ -21,7 +21,7 @@
     --color-accent-foreground: #18181b;
     
     /* Spacing */
-    --spacing-xs: 0.12.5rem;
+    --spacing-xs: 0.125rem;
     --spacing-sm: 0.25rem;
     --spacing-md: 0.5rem;
     --spacing-lg: 1rem;
@@ -157,7 +157,7 @@ body {
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     padding: var(--spacing-sm);
     margin-top: var(--spacing-sm);
-    min-width: 280px;
+    width: min(280px, calc(100vw - 2rem));
     z-index: 50;
     opacity: 0;
     visibility: hidden;
@@ -820,7 +820,12 @@ body {
 .app__footer-text a{
     color: var(--color-primary)
 }
+@media (max-width: 670px) {
 
+    .strategy-dropdown__menu {
+        max-width: 200px;
+    }
+}
 /* Media Queries */
 @media (max-width: 640px) {
     .app {
@@ -843,18 +848,11 @@ body {
     .help-section__outs {
         min-width: 3rem;
     }
+    .strategy-dropdown__menu {
+        max-width: 150px;
+    }
 }
 
-@media (min-width: 641px) {
-    .calculator__inputs {
-        flex-direction: row;
-        gap: var(--spacing-lg);
-    }
-    
-    .form-group {
-        flex: 1;
-    }
-}
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
