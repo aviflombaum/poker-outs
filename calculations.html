@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Outs Probability Tables</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+        h2 {
+            margin-top: 40px;
+            color: #444;
+        }
+        .info {
+            background: #f4f4f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .formula {
+            font-family: monospace;
+            background: #e4e4e7;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #18181b;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .highlight {
+            background: #fef3c7;
+            font-weight: 500;
+        }
+        .cards-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            table {
+                font-size: 0.9em;
+            }
+            th, td {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Poker Outs Probability Tables</h1>
+    
+    <div class="info">
+        <h3>How to Use These Tables</h3>
+        <p>Find your number of players (2-9) and your number of outs (1-10) to see your probability of hitting your hand.</p>
+        <ul>
+            <li><strong>Turn %</strong> - Probability of hitting your hand by the river (after seeing the flop, with 2 cards to come)</li>
+            <li><strong>River %</strong> - Probability of hitting your hand on the river (after seeing the turn, with 1 card to come)</li>
+        </ul>
+        
+        <h3>Common Drawing Hands</h3>
+        <ul>
+            <li><strong>Flush Draw</strong>: 9 outs</li>
+            <li><strong>Open-Ended Straight Draw</strong>: 8 outs</li>
+            <li><strong>Gutshot Straight Draw</strong>: 4 outs</li>
+            <li><strong>Two Pair to Full House</strong>: 4 outs</li>
+            <li><strong>One Pair to Trips</strong>: 2 outs</li>
+        </ul>
+    </div>
+
+    <script>
+        // Calculate probabilities
+        const calculateProbabilities = (players, outs) => {
+            const cardsAfterFlop = 52 - 3 - 2 - ((players - 1) * 2);
+            const cardsAfterTurn = cardsAfterFlop - 1;
+            
+            const missFirstCard = (cardsAfterFlop - outs) / cardsAfterFlop;
+            const missSecondCard = (cardsAfterFlop - 1 - outs) / (cardsAfterFlop - 1);
+            const beforeTurnProb = 1 - (missFirstCard * missSecondCard);
+            
+            const beforeRiverProb = outs / cardsAfterTurn;
+            
+            return {
+                turn: (beforeTurnProb * 100).toFixed(1),
+                river: (beforeRiverProb * 100).toFixed(1),
+                cardsAfterFlop: cardsAfterFlop,
+                cardsAfterTurn: cardsAfterTurn
+            };
+        };
+
+        // Generate tables for each player count
+        let html = '';
+        
+        for (let players = 2; players <= 9; players++) {
+            const calc = calculateProbabilities(players, 1);
+            
+            html += `<h2>${players} Players</h2>`;
+            html += `<div class="cards-info">Cards remaining: ${calc.cardsAfterFlop} after flop, ${calc.cardsAfterTurn} after turn</div>`;
+            html += '<table>';
+            html += '<tr><th>Outs</th>';
+            
+            // Header row
+            for (let outs = 1; outs <= 10; outs++) {
+                html += `<th>${outs}</th>`;
+            }
+            html += '</tr>';
+            
+            // Turn probabilities row
+            html += '<tr><td><strong>Turn %</strong></td>';
+            for (let outs = 1; outs <= 10; outs++) {
+                const prob = calculateProbabilities(players, outs);
+                const cellClass = (outs === 4 || outs === 8 || outs === 9) ? 'highlight' : '';
+                html += `<td class="${cellClass}">${prob.turn}%</td>`;
+            }
+            html += '</tr>';
+            
+            // River probabilities row
+            html += '<tr><td><strong>River %</strong></td>';
+            for (let outs = 1; outs <= 10; outs++) {
+                const prob = calculateProbabilities(players, outs);
+                const cellClass = (outs === 4 || outs === 8 || outs === 9) ? 'highlight' : '';
+                html += `<td class="${cellClass}">${prob.river}%</td>`;
+            }
+            html += '</tr>';
+            
+            html += '</table>';
+        }
+        
+        // Add formulas section
+        html += `
+        <div class="info" style="margin-top: 40px;">
+            <h3>Formulas Used</h3>
+            <div class="formula">
+                <strong>Cards Remaining:</strong><br>
+                After Flop = 52 - 3 (flop) - 2 (your cards) - (players-1)×2 (opponent cards)<br>
+                After Turn = Cards After Flop - 1
+            </div>
+            <div class="formula">
+                <strong>Turn Probability (2 cards to come):</strong><br>
+                P = 1 - ((cards-outs)/cards × (cards-1-outs)/(cards-1))
+            </div>
+            <div class="formula">
+                <strong>River Probability (1 card to come):</strong><br>
+                P = outs / cards remaining
+            </div>
+        </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', html);
+    </script>
+</body>
+</html>

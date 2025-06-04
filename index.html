@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate poker hand probabilities based on outs and player count">
+    <meta name="theme-color" content="#000000">
+    <title>Poker Outs Calculator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+    <div class="app">
+        <header class="app__header">
+            <h1 class="app__title">Poker Outs Calculator</h1>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="theme-toggle__icon theme-toggle__icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="theme-toggle__icon theme-toggle__icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </header>
+
+        <main class="calculator">
+            <div class="calculator__inputs">
+                <div class="form-group">
+                    <label class="form-group__label" for="players">Players at Table</label>
+                    <select class="form-group__select" id="players">
+                        <option value="2">2 Players</option>
+                        <option value="3">3 Players</option>
+                        <option value="4">4 Players</option>
+                        <option value="5">5 Players</option>
+                        <option value="6">6 Players</option>
+                        <option value="7">7 Players</option>
+                        <option value="8">8 Players</option>
+                        <option value="9">9 Players</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-group__label" for="outs">Number of Outs</label>
+                    <input 
+                        type="number" 
+                        class="form-group__input" 
+                        id="outs" 
+                        min="1" 
+                        placeholder="Enter outs"
+                        inputmode="numeric"
+                    >
+                </div>
+            </div>
+
+            <div class="results">
+                <div class="results__card">
+                    <h2 class="results__title">Turn</h2>
+                    <div class="results__percentage" id="turnPercentage">—</div>
+                    <div class="results__description">After flop (2 cards to come)</div>
+                </div>
+                <div class="results__card">
+                    <h2 class="results__title">River</h2>
+                    <div class="results__percentage" id="riverPercentage">—</div>
+                    <div class="results__description">After turn (1 card to come)</div>
+                </div>
+            </div>
+            
+            <div class="cards-info">
+                <div class="cards-info__text" id="cardsLeft">45 cards after flop, 44 after turn</div>
+            </div>
+        </main>
+
+        <footer class="app__footer">
+            <p class="app__footer-text">Calculate your poker hand probabilities</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
