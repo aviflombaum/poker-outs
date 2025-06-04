@@ -130,10 +130,183 @@ const calculatePotOdds = () => {
     }
 };
 
+// PWA Install functionality
+let deferredPrompt;
+let installBanner;
+let installButton;
+let installBannerClose;
+
+const initInstallBanner = () => {
+    installBanner = document.getElementById('installBanner');
+    installButton = document.getElementById('installButton');
+    installBannerClose = document.getElementById('installBannerClose');
+    
+    // Check if we should show the install banner
+    checkInstallPrompt();
+    
+    // Set up event listeners
+    installButton.addEventListener('click', handleInstallClick);
+    installBannerClose.addEventListener('click', hideInstallBanner);
+    
+    // Listen for beforeinstallprompt event (Android Chrome)
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallBanner();
+    });
+    
+    // Listen for appinstalled event
+    window.addEventListener('appinstalled', () => {
+        hideInstallBanner();
+        deferredPrompt = null;
+    });
+};
+
+const checkInstallPrompt = () => {
+    // Don't show if user has dismissed it
+    if (localStorage.getItem('installBannerDismissed') === 'true') {
+        return;
+    }
+    
+    // Check if we're in a mobile browser that supports PWA installation
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+    const isInWebAppMode = window.navigator.standalone === true;
+    
+    // Don't show if already installed
+    if (isInStandaloneMode || isInWebAppMode) {
+        return;
+    }
+    
+    // Show on mobile devices
+    if (isIOS || isAndroid) {
+        showInstallBanner();
+    }
+};
+
+const showInstallBanner = () => {
+    if (installBanner) {
+        installBanner.classList.add('install-banner--visible');
+        
+        // Update button text based on device
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        if (isIOS) {
+            installButton.innerHTML = `
+                <svg class="install-banner__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="9" cy="9" r="2"></circle>
+                    <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                </svg>
+                Share
+            `;
+        }
+    }
+};
+
+const hideInstallBanner = () => {
+    if (installBanner) {
+        installBanner.classList.remove('install-banner--visible');
+        localStorage.setItem('installBannerDismissed', 'true');
+    }
+};
+
+const handleInstallClick = async () => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    
+    if (isIOS) {
+        // For iOS, show instructions
+        showIOSInstructions();
+    } else if (deferredPrompt) {
+        // For Android with native prompt
+        const result = await deferredPrompt.prompt();
+        const outcome = await result.userChoice;
+        
+        if (outcome === 'accepted') {
+            hideInstallBanner();
+        }
+        
+        deferredPrompt = null;
+    } else {
+        // Fallback: try to trigger share menu
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'Poker Outs Calculator',
+                    text: 'Calculate poker hand probabilities',
+                    url: window.location.href
+                });
+            } catch (err) {
+                // User cancelled or share failed
+                console.log('Share cancelled');
+            }
+        }
+    }
+};
+
+const showIOSInstructions = () => {
+    // Create a simple modal with iOS install instructions
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+    `;
+    
+    const content = document.createElement('div');
+    content.style.cssText = `
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        max-width: 320px;
+        text-align: center;
+        color: #333;
+    `;
+    
+    content.innerHTML = `
+        <h3 style="margin: 0 0 16px 0; font-size: 18px;">Add to Home Screen</h3>
+        <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.4;">
+            1. Tap the Share button <svg style="display: inline; margin: 0 2px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16,6 12,2 8,6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg><br>
+            2. Scroll down and tap "Add to Home Screen"<br>
+            3. Tap "Add" to confirm
+        </p>
+        <button onclick="this.parentElement.parentElement.remove()" style="
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+        ">Got it</button>
+    `;
+    
+    modal.appendChild(content);
+    document.body.appendChild(modal);
+    
+    // Remove modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+};
+
 // Initialize app
 const init = () => {
     // Set up theme
     initTheme();
+    
+    // Set up install banner
+    initInstallBanner();
     
     // Add event listeners
     document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
