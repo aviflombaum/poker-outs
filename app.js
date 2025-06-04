@@ -44,14 +44,16 @@ const updateDisplay = () => {
     const outsInput = document.getElementById('outs');
     const turnElement = document.getElementById('turnPercentage');
     const riverElement = document.getElementById('riverPercentage');
-    const cardsLeftElement = document.getElementById('cardsLeft');
+    const cardsLeftElements = document.querySelectorAll('.cards-left');
     
     const players = parseInt(playersSelect.value);
     const outs = parseFloat(outsInput.value);
     
     // Always show cards left
     const cardsInfo = calculateProbabilities(players, 1);
-    cardsLeftElement.textContent = `${cardsInfo.cardsAfterFlop} cards after flop, ${cardsInfo.cardsAfterTurn} after turn`;
+    cardsLeftElements[0].textContent = `${cardsInfo.cardsAfterFlop} cards after flop`;
+    cardsLeftElements[1].textContent = `${cardsInfo.cardsAfterTurn} after turn`;
+
     
     if (!outs || outs < 0) {
         turnElement.textContent = '—';
